@@ -1,2 +1,2 @@
 # Algorithm-Problem-Record
-用于个人复习与记录
+放到Github上是为了方便个人复习
