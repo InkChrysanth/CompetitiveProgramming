@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int N=1010;
+int n; 
 struct Point
 {
     int x, y;
@@ -19,7 +20,7 @@ bool cmp(Point A, Point B)
 }
 int main()
 {
-    int n; cin>>n;
+    cin>>n;
     for(int i=0; i<n; i++) cin>>a[i].x>>a[i].y;
     for(int i=0; i<n; i++)
     {
