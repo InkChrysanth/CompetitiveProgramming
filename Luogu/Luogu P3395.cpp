@@ -1,3 +1,9 @@
+// Problem: P3395 路障
+// Contest: Luogu
+// URL: https://www.luogu.com.cn/problem/P3395
+// Memory Limit: 512 MB
+// Time Limit: 1000 ms
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef pair<int, int> PII;
