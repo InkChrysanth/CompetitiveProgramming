@@ -2,3 +2,4 @@
 #### [我的Luogu账户](https://www.luogu.com.cn/user/502729)
 #### [我的Acwing账户](https://www.acwing.com/user/myspace/index/95602/)
 #### [![](https://cfrating.ihcr.top/?user=kx233-)](https://codeforces.com/profile/kx233-)
+#### [![](https://atrating.baoshuo.dev/rating?username=kx233)](https://atcoder.jp/users/kx233)
