@@ -1,5 +1,5 @@
-# Algorithm-Problem-Record [![Page Views Count](https://badges.toozhao.com/badges/01H8Y14MT5K5AMC6QC4Z69E1HZ/orange.svg)](https://badges.toozhao.com/stats/01H8Y14MT5K5AMC6QC4Z69E1HZ) 
-> Record codes when doing questions and contests
+# About the Project [![Page Views Count](https://badges.toozhao.com/badges/01H8Y14MT5K5AMC6QC4Z69E1HZ/orange.svg)](https://badges.toozhao.com/stats/01H8Y14MT5K5AMC6QC4Z69E1HZ) 
+> Purpose: Recording codes when doing questions and contests
 
 ![GitHub](https://img.shields.io/github/license/kx23333/Algorithm-Problem-Record.svg?style=popout-square)
 ![GitHub top language](https://img.shields.io/github/languages/top/kx23333/Algorithm-Problem-Record.svg?style=popout-square) 
