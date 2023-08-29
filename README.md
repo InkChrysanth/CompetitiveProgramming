@@ -6,11 +6,9 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/kx23333/Algorithm-Problem-Record.svg?style=popout-square) 
 [![wakatime](https://wakatime.com/badge/user/c9a30e49-5476-4556-9853-645973ddf22b.svg)](https://wakatime.com/@c9a30e49-5476-4556-9853-645973ddf22b)  
 ## About the Author  
-
-[![](https://cfrating.ihcr.top/?user=kx233-)](https://codeforces.com/profile/kx233-)  [![](https://atrating.baoshuo.dev/rating?username=kx233)](https://atcoder.jp/users/kx233)
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkx23333%2FAlgorithm-Problem-Record.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkx23333%2FAlgorithm-Problem-Record?ref=badge_large)
-
+[![](https://cfrating.ihcr.top/?user=kx233-)](https://codeforces.com/profile/kx233-)  [![](https://atrating.baoshuo.dev/rating?username=kx233)](https://atcoder.jp/users/kx233)  
+## License  
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkx23333%2Fkx23333.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkx23333%2Fkx23333?ref=badge_large)  
 ---
 You can submit issues when finding bugs.  
 Contributions are welcomed!
