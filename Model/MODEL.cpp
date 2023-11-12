@@ -18,9 +18,9 @@ inline ll read()
 	return f?-a:a;
 }
 
-
 signed main()
 {
+	ios::sync_with_stdio(false); cout.tie(0);
 	
 	return 0;
 }
