@@ -52,7 +52,7 @@ signed main()
 	sort(a+1, a+n+1);
 	for(int i=1; i<=n; i++)
 		for(int j=i+1; j<=min(i+400, n); j++)
-			ans=min({ans, calc(i, j)});
+			ans=min(ans, calc(i, j));
 	for(int i=1; i<=n; i++)
 	    for(int j=n; j>=max(i+1, n-400); j--)
 	        ans=min(ans, calc(i, j));
