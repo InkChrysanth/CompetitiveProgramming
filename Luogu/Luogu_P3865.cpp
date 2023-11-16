@@ -41,7 +41,7 @@ signed main()
 	n=int_rd, m=int_rd;
 	for(int i=1; i<=n; i++)
 		st[i][0]=int_rd;
-	for(int k=1; k<=21; k++)
+	for(int k=1; k<=20; k++)
 		for(int i=1; i+(1<<k)-1<=n; i++)
 			st[i][k]=max(st[i][k-1], st[i+(1<<(k-1))][k-1]);
 	while(m--)
