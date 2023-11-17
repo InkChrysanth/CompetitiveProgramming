@@ -28,7 +28,7 @@ void dijkstra()
 	while(heap.size())
 	{
 		auto t=heap.top(); heap.pop();
-        if(vis[t.second]) continue;
+		if(vis[t.second]) continue;
 		vis[t.second]=true;
 		for(int i=h[t.second]; ~i; i=ne[i])
 		{
