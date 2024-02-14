@@ -19,9 +19,34 @@ inline ll read()
 	return f?-a:a;
 }
 
+const int N=71;
+vector<int> a[N];
+
+int solve(vector<int> a)
+{
+	int cur=a[0], ans=a[0];
+	for(int i=1; i<a.size(); i++)
+	{
+		cur=floor(cur/2.0);
+		if(cur>=a[i]) ;
+		else ans+=(a[i]-cur), cur=a[i];
+	}
+	return ans;
+}
+
 signed main()
 {
+	freopen("magic.in", "r", stdin);
+	freopen("magic.out", "w", stdout);
 	cin.tie(0); cout.tie(0);
-	
+	int n=int_rd;
+	for(int i=1; i<=n; i++)
+	{
+		int x=int_rd;
+		for(int j=1; j<=n-i+1; j++)
+			a[j].emplace_back(x);
+	}
+	for(int i=n; i>=1; i--)
+		cout<<solve(a[i])<<' ';
 	return 0;
 }
