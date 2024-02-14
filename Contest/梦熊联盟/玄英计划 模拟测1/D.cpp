@@ -19,33 +19,16 @@ inline ll read()
 	return f?-a:a;
 }
 
+
 const int N=100010;
 
-int n, m, k, ans=0x3f3f3f3f;
-int A[N], B[N];
-int city[N];
+int p[N], sz[N];
+int n, m, k;
 
-int calc()
+int find(int x)
 {
-	int res=0;
-	for(int i=1; i<=m; i++)
-		if(city[i]&1) res++;
-	return res;
-}
-
-void dfs(int u)
-{
-	if(u==n+1)
-	{
-		ans=min(ans, calc());
-		return;
-	}
-	city[A[u]]++;
-	dfs(u+1);
-	city[A[u]]--;
-	city[B[u]]++;
-	dfs(u+1);
-	city[B[u]]--;
+	if(x==p[x]) return x;
+	return p[x]=find(p[x]);
 }
 
 signed main()
@@ -54,21 +37,17 @@ signed main()
 	freopen("profit.out", "w", stdout);
 	cin.tie(0); cout.tie(0);
 	n=int_rd, m=int_rd, k=int_rd;
-	if(n>20)
+	for(int i=1; i<=m; i++) p[i]=i;
+	while(n--)
 	{
-		for(int i=1; i<=n; i++)
-		{
-			int a=int_rd, b=int_rd;
-			city[a]++;
-		}
-		ans=calc();
+		int a=int_rd, b=int_rd;
+		a=find(a), b=find(b);
+		if(a!=b) sz[b]+=sz[a], p[a]=b;
+		sz[b]++;
 	}
-	else
-	{
-		for(int i=1; i<=n; i++)
-			A[i]=int_rd, B[i]=int_rd;
-		dfs(1);
-	}
-	cout<<k-ans<<endl;
+	for(int i=1; i<=m; i++)
+		if(i==p[i] && sz[i]&1)
+			k--;
+	cout<<k<<endl;
 	return 0;
 }

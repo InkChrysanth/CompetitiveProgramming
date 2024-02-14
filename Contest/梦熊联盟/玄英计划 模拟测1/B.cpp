@@ -1,6 +1,5 @@
 // #pragma GCC optimize(2)
 #include <bits/stdc++.h>
-#define int long long
 #define int_rd (int)read()
 #define ll_rd read()
 #define endl '\n'
@@ -20,8 +19,40 @@ inline ll read()
 	return f?-a:a;
 }
 
-const int N=3010, INF=1e18;
-int g[N][N], f[N][N];
+const int N=3010;
+vector<int> g[N];
+int mn=1e9, ans;
+int dist[N], cnt[N];
+
+void dijkstra(int st)
+{
+	memset(dist, 0x3f, sizeof dist);
+	memset(cnt, 0, sizeof cnt);
+	queue<int> q; q.push(st);
+	dist[st]=0, cnt[st]=1;
+	while(q.size())
+	{
+		auto u=q.front(); q.pop();
+		for(auto v: g[u])
+		{
+			if(dist[u]==dist[v] || dist[u]+1==dist[v])
+			{
+				int len=dist[u]+dist[v]+1;
+				ll res=cnt[u]*cnt[v];
+				if(len<mn) mn=len, ans=res;
+				else if(len==mn) ans+=res;
+			}
+			if(dist[u]+1<dist[v])
+			{
+				dist[v]=dist[u]+1;
+				cnt[v]=cnt[u];
+				q.push(v);
+			}
+			else if(dist[u]+1==dist[v])
+				cnt[v]+=cnt[u];
+		}
+	}
+}
 
 signed main()
 {
@@ -29,31 +60,13 @@ signed main()
 	freopen("b.out", "w", stdout);
 	cin.tie(0); cout.tie(0);
 	int n=int_rd, m=int_rd;
-	for(int i=1; i<=n; i++)
-		for(int j=1; j<=n; j++)
-		{
-			if(i==j) g[i][j]=0;
-			else g[i][j]=INF;
-		}
-	while(m--)
+	for(int i=1; i<=m; i++)
 	{
 		int u=int_rd, v=int_rd;
-		g[u][v]=g[v][u]=1;
+		g[u].emplace_back(v); g[v].emplace_back(u);
 	}
-	memcpy(f, g, sizeof g);
-	int mn=INF, ans=1;
-    for(int k=1; k<=n; k++)
-    {
-        for(int i=1; i<k; i++)
-            for(int j=1; j<i; j++)
-            	if(f[i][j]+g[i][k]+g[j][k]<mn)
-            		mn=f[i][j]+g[i][k]+g[j][k], ans=1;
-            	else if(f[i][j]+g[i][k]+g[j][k]==mn) ans++;
-        for(int i=1; i<=n; i++)
-            for (int j=1; j<=n; j++)
-                f[i][j]=min(f[i][j], f[i][k]+f[k][j]);
-    }
-    if(mn==INF) cout<<0<<endl;
-    else cout<<ans<<endl;
+	for(int i=1; i<=n; i++) dijkstra(i);
+	if(mn&1) ans/=2;
+	cout<<ans/mn<<endl;
 	return 0;
 }
