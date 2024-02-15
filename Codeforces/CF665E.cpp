@@ -24,7 +24,7 @@ inline ll read()
 	return f?-a:a;
 }
 
-const int N=100010;
+const int N=1000010;
 int n, k;
 int son[N*31][2], sz[N*31], idx;
 
