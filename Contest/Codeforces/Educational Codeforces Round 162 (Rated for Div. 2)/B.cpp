@@ -1,5 +1,12 @@
+// Problem: B. Monsters Attack!
+// Contest: Codeforces - Educational Codeforces Round 162 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1923/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2500 ms
+
 //#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops")
 #include <bits/stdc++.h>
+#define int long long
 #define Fi(s) freopen(s,"r",stdin)
 #define Fo(s) freopen(s,"w",stdout)
 #define Fre(s) Fi(s".in"),Fo(s".out")
@@ -18,7 +25,6 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
-typedef pair<ll, int> pli;
 
 const int inf=0x3f3f3f3f;
 const ll llinf=0x3f3f3f3f3f3f3f3fll;
@@ -46,9 +52,32 @@ void read(T &first, Args &...args)
 	read(args...);
 }
 
+const int N=300010;
+
+array<pii, N> mon;
+
 signed main()
 {
 	cin.tie(0); cout.tie(0);
-	
+	int t; rd(t);
+	while(t--)
+	{
+		int n, k; rd(n, k);
+		For(i, 1, n) rd(mon[i].se);
+		mon[0].fi=0;
+		For(i, 1, n)
+		{
+			int x; rd(x); x=abs(x);
+			mon[i].fi=x;
+		}
+		sort(mon.begin()+1, mon.begin()+n+1);
+		For(i, 1, n)
+			mon[i].se=mon[i-1].se+mon[i].se;
+		bool flag=true;
+		For(i, 1, n)
+			if(mon[i].se>k*mon[i].fi)
+				flag=false;
+		cout<<(flag?"YES":"NO")<<endl;
+	}
 	return 0;
 }

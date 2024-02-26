@@ -1,3 +1,9 @@
+// Problem: A. Moving Chips
+// Contest: Codeforces - Educational Codeforces Round 162 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1923/problem/0
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+
 //#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops")
 #include <bits/stdc++.h>
 #define Fi(s) freopen(s,"r",stdin)
@@ -18,7 +24,6 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
-typedef pair<ll, int> pli;
 
 const int inf=0x3f3f3f3f;
 const ll llinf=0x3f3f3f3f3f3f3f3fll;
@@ -46,9 +51,23 @@ void read(T &first, Args &...args)
 	read(args...);
 }
 
+const int N=55;
+
 signed main()
 {
 	cin.tie(0); cout.tie(0);
-	
+	int t; rd(t);
+	while(t--)
+	{
+		int n; rd(n);
+		array<int, N> a;
+		For(i, 1, n) rd(a[i]);
+		int st, ed;
+		For(i, 1, n) if(a[i]){st=i;break;}
+		Rep(i, n, 1) if(a[i]){ed=i;break;}
+		int ans=0;
+		For(i, st, ed) if(!a[i]) ans++;
+		cout<<ans<<endl;
+	}	
 	return 0;
 }
