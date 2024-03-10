@@ -1,5 +1,7 @@
 //#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops")
 #include <bits/stdc++.h>
+#define y0 y114514
+#define y1 y1919810
 #define Fi(s) freopen(s,"r",stdin)
 #define Fo(s) freopen(s,"w",stdout)
 #define Fre(s) Fi(s".in"),Fo(s".out")
@@ -22,6 +24,9 @@ typedef pair<ll, int> pli;
 
 const int inf=0x3f3f3f3f;
 const ll llinf=0x3f3f3f3f3f3f3f3fll;
+
+int dx[]={0, 1, 0, -1, 1, 1, -1, -1};
+int dy[]={1, 0, -1, 0, 1, -1, 1, -1};
 
 template <typename T>
 void read(T &x)
