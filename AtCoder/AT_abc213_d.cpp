@@ -1,11 +1,3 @@
-// Problem: [ABC212E] Safety Journey
-// Contest: Luogu
-// URL: https://www.luogu.com.cn/problem/AT_abc212_e
-// Memory Limit: 1 MB
-// Time Limit: 2000 ms
-// 
-// Powered by CP Editor (https://cpeditor.org)
-
 //#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops")
 #include <bits/stdc++.h>
 #define Fi(s) freopen(s,"r",stdin)
@@ -57,33 +49,35 @@ void read(T &first, Args &...args)
 	read(args...);
 }
 
-const int N=5010, MOD=998244353;
+const int N=200010;
 
-int n, m, k;
-int f[N][N];// f[i, j] j-time i-point
-// f[i, j] = f[1~n, j-1] - f[1~n, j-1](cant arrive) - f[i, j-1]
-// ans f[1, k]
+int n;
 vector<int> g[N];
+
+void dfs(int u, int fa)
+{
+	cout<<u<<' ';
+	for(auto v: g[u])
+	{
+		if(v!=fa)
+		{
+			dfs(v, u);
+			cout<<u<<' ';
+		}
+	}
+	return;
+}
 
 signed main()
 {
 	cin.tie(0); cout.tie(0);
-	rd(n, m, k);
-	For(i, 1, m)
+	rd(n);
+	For(i, 1, n-1)
 	{
 		int u, v; rd(u, v);
 		g[u].eb(v); g[v].eb(u);
 	}
-	f[1][0]=1;
-	For(j, 1, k)
-	{
-		int sum=0;
-		For(i, 1, n) sum=(sum+f[i][j-1])%MOD;
-		For(i, 1, n) f[i][j]=(sum-f[i][j-1]+MOD)%MOD;
-		For(i, 1, n)
-			for(auto ne: g[i])
-				f[i][j]=(f[i][j]-f[ne][j-1]+MOD)%MOD;
-	}
-	cout<<f[1][k]<<endl;
+	For(i, 1, N-1) sort(all(g[i]));
+	dfs(1, 0);
 	return 0;
 }

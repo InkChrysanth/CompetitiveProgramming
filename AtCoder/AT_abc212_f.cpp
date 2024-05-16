@@ -1,11 +1,3 @@
-// Problem: [ABC212E] Safety Journey
-// Contest: Luogu
-// URL: https://www.luogu.com.cn/problem/AT_abc212_e
-// Memory Limit: 1 MB
-// Time Limit: 2000 ms
-// 
-// Powered by CP Editor (https://cpeditor.org)
-
 //#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops")
 #include <bits/stdc++.h>
 #define Fi(s) freopen(s,"r",stdin)
@@ -57,33 +49,53 @@ void read(T &first, Args &...args)
 	read(args...);
 }
 
-const int N=5010, MOD=998244353;
+const int N=100010;
 
-int n, m, k;
-int f[N][N];// f[i, j] j-time i-point
-// f[i, j] = f[1~n, j-1] - f[1~n, j-1](cant arrive) - f[i, j-1]
-// ans f[1, k]
-vector<int> g[N];
+struct Node
+{
+	int a, b, s, t;
+}bus[N];
+
+int n, m, q;
+int dp[N][21];
+set<pii> st[N];
+
+int query(int x, int k)
+{
+	auto it=st[x].lower_bound(mp(k, 0));
+	if(it==st[x].end()) return 0;
+	return (*it).se;
+}
 
 signed main()
 {
 	cin.tie(0); cout.tie(0);
-	rd(n, m, k);
+	rd(n, m, q);
 	For(i, 1, m)
 	{
-		int u, v; rd(u, v);
-		g[u].eb(v); g[v].eb(u);
+		rd(bus[i].a, bus[i].b, bus[i].s, bus[i].t);
+		st[bus[i].a].insert(mp(bus[i].s, i));
 	}
-	f[1][0]=1;
-	For(j, 1, k)
+	For(i, 1, m) dp[i][0]=query(bus[i].b, bus[i].t);
+	For(j, 1, 20)
+		For(i, 1, m)
+			dp[i][j]=dp[dp[i][j-1]][j-1];
+	while(q--)
 	{
-		int sum=0;
-		For(i, 1, n) sum=(sum+f[i][j-1])%MOD;
-		For(i, 1, n) f[i][j]=(sum-f[i][j-1]+MOD)%MOD;
-		For(i, 1, n)
-			for(auto ne: g[i])
-				f[i][j]=(f[i][j]-f[ne][j-1]+MOD)%MOD;
+		int x, y, z; rd(x, y, z);
+		int p=query(y, x);
+		if(!p) cout<<y<<endl;
+		else
+		{
+			Rep(i, 20, 0)
+			{
+				if(dp[p][i] && bus[dp[p][i]].s<z)
+					p=dp[p][i];
+			}
+			if(bus[p].s>=z) cout<<bus[p].a<<endl;
+			else if(bus[p].t<z) cout<<bus[p].b<<endl;
+			else cout<<bus[p].a<<' '<<bus[p].b<<endl;
+		}
 	}
-	cout<<f[1][k]<<endl;
 	return 0;
 }
