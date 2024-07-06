@@ -1,5 +1,6 @@
 //#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops")
 #include <bits/stdc++.h>
+#define debug(x) cerr<<#x<<": "<<(x)<<endl
 #define Fi(s) freopen(s,"r",stdin)
 #define Fo(s) freopen(s,"w",stdout)
 #define Fre(s) Fi(s".in"),Fo(s".out")
@@ -12,6 +13,8 @@
 #define endl '\n'
 #define mp make_pair
 #define eb emplace_back
+#define Yes cout<<"Yes"<<endl
+#define No cout<<"No"<<endl
 
 using namespace std;
 
