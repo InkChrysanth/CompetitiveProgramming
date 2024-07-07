@@ -4,14 +4,16 @@
 #define Fi(s) freopen(s,"r",stdin)
 #define Fo(s) freopen(s,"w",stdout)
 #define Fre(s) Fi(s".in"),Fo(s".out")
-#define all(s) s.begin(), s.end()
+#define all(x) x.begin(), x.end()
 #define For(i,j,k) for(int i=(j),i##_=(k);i<=i##_;i++)
 #define Rep(i,j,k) for(int i=(j),i##_=(k);i>=i##_;i--)
+#define each(i,x) for(auto &i:(x))
 #define fi first
 #define se second
 #define rd read
 #define endl '\n'
 #define mp make_pair
+#define pb push_back
 #define eb emplace_back
 #define Yes cout<<"Yes"<<endl
 #define No cout<<"No"<<endl
