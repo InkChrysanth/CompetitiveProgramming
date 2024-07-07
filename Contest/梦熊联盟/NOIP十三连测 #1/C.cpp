@@ -88,7 +88,7 @@ signed main()
 	For(i, 0, n) f[0][i]=g[0][i]=1;
 	For(i, 1, n)
 	{
-		For(j, 0, n)
+		For(j, 0, i)
 		{
 			For(k, 0, i-1)
 			{
@@ -99,6 +99,11 @@ signed main()
 			{
 				g[i][j]=(g[i][j]+f[k][j]%MOD*f[i-k][j]%MOD*C[i][k])%MOD;
 			}
+		}
+		For(j, i+1, n)
+		{
+			f[i][j]=f[i][j-1];
+			g[i][j]=g[i][j-1];
 		}
 	}
 	ll ans=f[n][0];

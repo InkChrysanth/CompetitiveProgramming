@@ -53,7 +53,7 @@ void read(T &first, Args &...args)
 }
 
 const int N=510, MOD=998244353;
-int n, x, y;
+int n, x;
 ll f[N][N], C[N][N];
 ll g[N][N];
 
