@@ -13,6 +13,7 @@
 #define rd read
 #define endl '\n'
 #define mp make_pair
+#define mtp make_tuple
 #define pb push_back
 #define eb emplace_back
 #define Yes cout<<"Yes"<<endl
@@ -21,6 +22,7 @@
 using namespace std;
 
 typedef long long ll;
+typedef long double ld;
 typedef unsigned long long ull;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
