@@ -24,6 +24,7 @@
 using namespace std;
 
 typedef long long ll;
+typedef __int128 lll;
 typedef long double ld;
 typedef unsigned long long ull;
 typedef pair<int, int> pii;
@@ -36,9 +37,21 @@ int dx[]={0, 0, 1, 0, -1, 1, 1, -1, -1};
 int dy[]={0, 1, 0, -1, 0, 1, -1, 1, -1};
 
 template <typename T>
+void print(T x)
+{
+    if(x<0)
+	{
+        putchar('-');
+        x=-x;
+    }
+    if(x>9) print(x/10);
+    putchar(x%10+'0');
+}
+
+template <typename T>
 void read(T &x)
 {
-	x=0; char ch=getchar(); ll f=1;
+	x=0; char ch=getchar(); T f=1;
 	while(!isdigit(ch))
 	{
 		if(ch=='-') f*=-1;
