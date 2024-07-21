@@ -1,5 +1,4 @@
 # About the Project
-Codes in this repository are 100% written in C++.\
 If you want to compile the code correctly, please read the following instructions.
 
 |key|value|
