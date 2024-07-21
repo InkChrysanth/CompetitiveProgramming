@@ -51,6 +51,27 @@ signed main()
                 flag=0;
                 break;
             }
+            
+            // i=1
+            // j=0 i+j=1
+            // k-j-1=1 i+k-j-1=2
+            // l<r
+            /*
+            bool pal=1;
+            for(int j=0; j<k-1-j; j++)
+            {
+                if(s[i+j]!=s[i+k-1-j])
+                {
+                    pal=0;
+                    break;
+                }
+            }
+            if(pal)
+            {
+                flag=0;
+                break;
+            }
+            */
         }
         if(flag) ans++;
     }while(next_permutation(all(s)));
