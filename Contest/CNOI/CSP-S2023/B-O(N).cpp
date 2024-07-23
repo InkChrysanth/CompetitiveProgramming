@@ -29,25 +29,21 @@ constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
 
 signed main()
 {
-	cin.tie(0)->sync_with_stdio(0);
-	int n;
+    cin.tie(0)->sync_with_stdio(0);
+    int n;
     cin>>n;
     vector<char> s(n+1);
-    vector<int> f(n+1), nxt(n+1);
-    for(int i=1; i<=n; i++) cin>>s[i], nxt[i]=i-1;
+    vector<ll> f(n+1), nxt(n+1);
+    vector<vector<int>> a(n+1, vector<int>(26));
+    for(int i=1; i<=n; i++) cin>>s[i];
+    ll ans=0;
     for(int i=1; i<=n; i++)
     {
-        while(nxt[i]>=1 && s[i]!=s[nxt[i]])
-            nxt[i]=nxt[nxt[i]]-1;
+        nxt[i]=i;
+        int p=a[nxt[i-1]][s[i]-'a'];
+        if(p) nxt[i]=nxt[p-1], f[i]=f[p-1]+1;
+        a[nxt[i]][s[i]-'a']=i, ans+=f[i];
     }
-    f[0]=f[1]=0;
-    for(int i=2; i<=n; i++)
-    {
-        if(nxt[i]>=1) f[i]=f[nxt[i]-1]+1;
-        else f[i]=0;
-    }
-    int ans=0;
-    for(int i=1; i<=n; i++) ans+=f[i];
     cout<<ans<<endl;
-	return 0;
+    return 0;
 }
