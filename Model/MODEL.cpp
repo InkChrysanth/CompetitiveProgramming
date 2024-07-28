@@ -10,7 +10,6 @@ using namespace std;
 #define Fre(s) Fi(s".in"),Fo(s".out")
 #define all(x) x.begin(), x.end()
 #define each(i,x) for(auto &i:(x))
-#define sz(x) int((x).size())
 #define fi first
 #define se second
 #define endl '\n'
@@ -22,7 +21,7 @@ using namespace std;
 using ll=long long;
 using ld=long double;
 using pii=pair<int, int>;
-using pll=pair<ll, ll>;
+using pli=pair<ll, int>;
 
 constexpr int inf=0x3f3f3f3f;
 constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
@@ -30,6 +29,6 @@ constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
 signed main()
 {
 	cin.tie(0)->sync_with_stdio(0);
-	
+
 	return 0;
 }
