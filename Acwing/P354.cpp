@@ -1,48 +1,67 @@
+// Problem: 天天爱跑步
+// Contest: AcWing
+// URL: https://www.acwing.com/problem/content/356/
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
+//#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops")
 #include <bits/stdc++.h>
 using namespace std;
-const int N=300010, M=N*2, DIFF=300010;
 
-int n, m;
-int h[N], e[M], ne[M], idx;
-int fa[N][20], d[N], c1[M], c2[M];
-int w[N], ans[N];
-bool st[N];
-queue<int> q;
+#define cmin(i,j) (i)=min((i),(j))
+#define cmax(i,j) (i)=max((i),(j))
+#define debug(x) cerr<<#x<<": "<<(x)<<endl
+#define Fi(s) freopen(s,"r",stdin)
+#define Fo(s) freopen(s,"w",stdout)
+#define Fre(s) Fi(s".in"),Fo(s".out")
+#define all(x) x.begin(), x.end()
+#define each(i,x) for(auto &i:(x))
+#define fi first
+#define se second
+#define endl '\n'
+#define pq priority_queue
+#define mp make_pair
+#define pb push_back
+#define eb emplace_back
+
+using ll=long long;
+using ld=long double;
+using pii=pair<int, int>;
+using pli=pair<ll, int>;
+
+constexpr int inf=0x3f3f3f3f;
+constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
+constexpr int N=600010, K=21;
+
+int n, m, ans[N];
+vector<int> g[N];
 vector<int> ap1[N], dap1[N], ap2[N], dap2[N];
+int dep[N], w[N], cnt1[N], cnt2[N];
+int fa[N][K];
 
-void add(int a, int b)
+void dfs(int u, int pre)
 {
-    e[idx]=b, ne[idx]=h[a], h[a]=idx++;
-}
-
-void bfs()
-{
-    q.push(1); d[1]=1;
-    while(!q.empty())
+    fa[u][0]=pre;
+    dep[u]=dep[pre]+1;
+    for(int k=1; k<=20; k++)
+        fa[u][k]=fa[fa[u][k-1]][k-1];
+    for(auto v: g[u])
     {
-        auto t=q.front();
-        q.pop();
-        for(int i=h[t]; ~i; i=ne[i])
-        {
-            int j=e[i];
-            if(d[j]) continue;
-            d[j]=d[t]+1;
-            fa[j][0]=t;
-            for(int k=1; k<=18; k++)
-                fa[j][k]=fa[fa[j][k-1]][k-1];
-            q.push(j);
-        }
+        if(v==pre) continue;
+        dfs(v, u);
     }
 }
 
 int lca(int a, int b)
 {
-    if(d[a]<d[b]) swap(a, b);
-    for(int k=18; k>=0; k--)
-        if(d[fa[a][k]]>=d[b])
+    if(dep[a]<dep[b]) swap(a, b);
+    for(int k=20; k>=0; k--)
+        if(dep[fa[a][k]]>=dep[b])
             a=fa[a][k];
-    if(a==b) return a;
-    for(int k=18; k>=0; k--)
+    if(a==b) return b;
+    for(int k=20; k>=0; k--)
     {
         if(fa[a][k]!=fa[b][k])
         {
@@ -53,46 +72,44 @@ int lca(int a, int b)
     return fa[a][0];
 }
 
-void dfs(int u)
+void _dfs(int u, int pre)
 {
-    st[u]=true;
-    int cnt1=c1[w[u]+d[u]], cnt2=c2[w[u]-d[u]+DIFF];
-    for(int i=0; i<ap1[u].size(); i++) c1[ap1[u][i]]++;
-    for(int i=0; i<dap1[u].size(); i++) c1[dap1[u][i]]--;
-    for(int i=0; i<ap2[u].size(); i++) c2[ap2[u][i]+DIFF]++;
-    for(int i=0; i<dap2[u].size(); i++) c2[dap2[u][i]+DIFF]--;
-    for(int i=h[u]; ~i; i=ne[i])
-    {
-        int j=e[i];
-        if(st[j]) continue;
-        dfs(j);
-    }
-    ans[u]=c1[w[u]+d[u]]-cnt1+c2[w[u]-d[u]+DIFF]-cnt2;
+	int _cnt1=cnt1[w[u]+dep[u]], _cnt2=cnt2[w[u]-dep[u]+N];
+	each(t, ap1[u]) cnt1[t]++;
+	each(t, ap2[u]) cnt2[t+N]++;
+	each(t, dap1[u]) cnt1[t]--;
+	each(t, dap2[u]) cnt2[t+N]--;
+	each(v, g[u])
+	{
+		if(v==pre) continue;
+		_dfs(v, u);
+	}
+	ans[u]=cnt1[w[u]+dep[u]]-_cnt1+cnt2[w[u]-dep[u]+N]-_cnt2;
 }
 
-int main()
+signed main()
 {
-    memset(h, -1, sizeof h);
-    cin.tie(0); cin>>n>>m;
-    for(int i=1; i<=n-1; i++)
-    {
-        int a, b; cin>>a>>b;
-        add(a, b), add(b, a);
-    }
-    bfs();
-    for(int i=1; i<=n; i++)
-        cin>>w[i];
-    for(int i=1; i<=m; i++)
-    {
-        int s, t; cin>>s>>t;
-        int res=lca(s, t);
-        ap1[s].push_back(d[s]);
-        dap1[fa[res][0]].push_back(d[s]);
-        ap2[t].push_back(d[s]-2*d[res]);
-        dap2[res].push_back(d[s]-2*d[res]);
-    }
-    dfs(1);
-    for(int i=1; i<=n; i++)
-        printf("%d ", ans[i]);
-    return 0;
+	cin.tie(0)->sync_with_stdio(0);
+	cin>>n>>m;
+	for(int i=1, u, v; i<=n-1; i++)
+	{
+		cin>>u>>v;
+		g[u].eb(v);
+		g[v].eb(u);
+	}
+	for(int i=1; i<=n; i++) cin>>w[i];
+	dfs(1, 0);
+	for(int i=1, st, ed; i<=m; i++)
+	{
+		cin>>st>>ed;
+		int _lca=lca(st, ed);
+		// debug(_lca);
+		ap1[st].eb(dep[st]);
+		ap2[ed].eb(dep[st]-2*dep[_lca]);
+		dap1[fa[_lca][0]].eb(dep[st]);
+		dap2[_lca].eb(dep[st]-2*dep[_lca]);
+	}
+	_dfs(1, 0);
+	for(int i=1; i<=n; i++) cout<<ans[i]<<' ';
+	return 0;
 }
