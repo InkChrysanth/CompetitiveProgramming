@@ -1,7 +1,7 @@
-// Problem: 区间
+// Problem: 创世纪
 // Contest: AcWing
-// URL: https://www.acwing.com/problem/content/description/364/
-// Memory Limit: 64 MB
+// URL: https://www.acwing.com/problem/content/description/361/
+// Memory Limit: 128 MB
 // Time Limit: 1000 ms
 // 
 // Powered by CP Editor (https://cpeditor.org)
@@ -33,51 +33,56 @@ using pli=pair<ll, int>;
 
 constexpr int inf=0x3f3f3f3f;
 constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
-constexpr int N=50010, T=50001;
+constexpr int N=1000010;
 
-//差分约束(min): 求最长路
-//si >= si-1 -> si - si-1 >= 0 : i-1 -> i, w=0
-//si - si-1 <= 1 -> si-1 - si >= -1 : i -> i-1, w=-1
-//sb - sa-1 >= c : a-1 -> b, w=c
+vector<int> g[N];
 
-vector<pii> g[N];
+int n, root;
+int fa[N], f[N][2];
+bool vis[N], flag;
 
-int n;
-int dist[N];
-bool ins[N];
+void dp(int u)
+{
+	f[u][0]=f[u][1]=0;
+	vis[u]=1;
+	int del=inf;
+	each(v, g[u])
+	{
+		if(v==root) continue;
+		dp(v);
+		int add=max(f[v][0], f[v][1]);
+		f[u][0]+=add;
+		cmin(del, add-f[v][0]);
+	}
+	f[u][1]=f[u][0]+1-del;
+	if(fa[root]==u && flag) f[u][1]=f[u][0]+1;
+}
 
 signed main()
 {
 	cin.tie(0)->sync_with_stdio(0);
 	cin>>n;
-	for(int i=1; i<=T; i++)
+	for(int i=1, x; i<=n; i++)
 	{
-		g[i-1].eb(mp(i, 0));
-		g[i].eb(mp(i-1, -1));
+		cin>>fa[i];
+		g[fa[i]].eb(i);
 	}
-	for(int i=1, a, b, c; i<=n; i++)
+	int ans=0;
+	for(int i=1; i<=n; i++)
 	{
-		cin>>a>>b>>c;
-		g[a-1].eb(mp(b, c));
+		if(vis[i]) continue;
+		root=i;
+		while(!vis[fa[root]]) vis[root]=1, root=fa[root];
+		
+		flag=0;
+		dp(root);
+		int res=max(f[root][0], f[root][1]);
+		
+		flag=1;
+		dp(root);
+		res=max(res, f[root][0]);
+		ans+=res;
 	}
-	fill(dist+1, dist+T+1, -inf);
-	queue<int> q;
-	q.push(0); ins[0]=1;
-	while(q.size())
-	{
-		int u=q.front();
-		q.pop();
-		ins[u]=0;
-		each(t, g[u])
-		{
-			int v=t.fi, w=t.se;
-			if(dist[v]<dist[u]+w)
-			{
-				dist[v]=dist[u]+w;
-				if(!ins[v]) q.push(v), ins[v]=1;
-			}
-		}
-	}
-	cout<<dist[T]<<endl;
+	cout<<ans<<endl;
 	return 0;
 }
