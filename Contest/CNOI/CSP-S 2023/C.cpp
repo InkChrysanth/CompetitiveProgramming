@@ -105,7 +105,7 @@ void add_variable()
 
 void access_variable()
 {
-    auto spilt=[](string s)
+    auto split=[](string s)
     {
         int pos;
         vector<string> res;
@@ -116,7 +116,7 @@ void access_variable()
     };
     string s;
     cin>>s;
-    vector<string> foos=spilt(s);
+    vector<string> foos=split(s);
     int tid=variables[*(foos.begin())].tid;
     ll addr=variables[*(foos.begin())].begin_pos;
     foos.erase(foos.begin());
