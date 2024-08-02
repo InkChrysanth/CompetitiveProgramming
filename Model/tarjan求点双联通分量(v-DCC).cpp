@@ -29,7 +29,7 @@ constexpr int N=500010;
 
 vector<int> g[N];
 
-int n, m, deg[N], root;
+int n, m, root;
 int dfn[N], low[N], dn;
 bool cut_point[N];
 int stk[N], top;
@@ -39,7 +39,7 @@ void tarjan(int u)
 {
 	dfn[u]=low[u]=++dn;
 	stk[++top]=u;
-	if(!deg[u] && u==root){ dcc.eb(vector<int>{u}); return; }
+	if(!g[u].size() && u==root) return void(dcc.eb(vector<int>{u}));
 	int cnt=0;
 	each(v, g[u])
 	{
@@ -73,8 +73,8 @@ signed main()
 	{
 		cin>>u>>v;
 		if(u==v) continue;
-		g[u].eb(v); deg[u]++;
-		g[v].eb(u); deg[v]++;
+		g[u].eb(v);
+		g[v].eb(u);
 	}
 	for(root=1; root<=n; root++)
 		if(!dfn[root])
