@@ -1,4 +1,4 @@
-//#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops")
+//#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
 #include <bits/stdc++.h>
 using namespace std;
 
