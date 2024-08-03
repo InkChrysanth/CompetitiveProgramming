@@ -1,12 +1,4 @@
-// Problem: B - Grid Walk
-// Contest: AtCoder - Japan Registry Services (JPRS) Programming Contest 2024#2 (AtCoder Beginner Contest 364)
-// URL: https://atcoder.jp/contests/abc364/tasks/abc364_b
-// Memory Limit: 1024 MB
-// Time Limit: 2000 ms
-// 
-// Powered by CP Editor (https://cpeditor.org)
-
-//#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops")
+//#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -18,7 +10,6 @@ using namespace std;
 #define Fre(s) Fi(s".in"),Fo(s".out")
 #define all(x) x.begin(), x.end()
 #define each(i,x) for(auto &i:(x))
-#define sz(x) int((x).size())
 #define fi first
 #define se second
 #define endl '\n'
@@ -30,51 +21,23 @@ using namespace std;
 using ll=long long;
 using ld=long double;
 using pii=pair<int, int>;
-using pll=pair<ll, ll>;
+using pli=pair<ll, int>;
 
 constexpr int inf=0x3f3f3f3f;
 constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
 
-int dx[]={0, -1, 1, 0, 0}, dy[]={0, 0, 0, -1, 1};
-
 signed main()
 {
 	cin.tie(0)->sync_with_stdio(0);
-	int n, m;
-	cin>>n>>m;
-	vector g(n+1, vector<bool>(m+1));
-	pii st;
-	cin>>st.fi>>st.se;
-	for(int i=1; i<=n; i++)
-		for(int j=1; j<=m; j++)
-		{
-			char c; cin>>c;
-			g[i][j]=c=='#';
-		}
-	string opt;
-	cin>>opt;
-	auto get=[&](char ch)
-	{
-		if(ch=='U') return mp(dx[1], dy[1]);
-		if(ch=='D') return mp(dx[2], dy[2]);
-		if(ch=='L') return mp(dx[3], dy[3]);
-		return mp(dx[4], dy[4]);
-	};
-	auto check=[&](int x, int y)
-	{
-		return x>=1 && x<=n && y>=1 && y<=m && !g[x][y];
-	};
-	each(ch, opt)
-	{
-		auto dir=get(ch);
-		st.fi+=dir.fi;
-		st.se+=dir.se;
-		if(!check(st.fi, st.se))
-		{
-			st.fi-=dir.fi;
-			st.se-=dir.se;
-		}
-	}
-	cout<<st.fi<<' '<<st.se<<endl;
+    int n;
+    cin>>n;
+    vector<pii> a(n);
+    for(int i=0; i<n; i++)
+    {
+        int x; cin>>x;
+        a[i]={x, i+1};
+    }
+    sort(all(a));
+    cout<<a[n-2].se<<endl;
 	return 0;
 }

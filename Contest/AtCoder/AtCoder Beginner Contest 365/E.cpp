@@ -29,9 +29,18 @@ constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
 signed main()
 {
 	cin.tie(0)->sync_with_stdio(0);
-    int x;
-    cin>>x;
-    if(x%400==0 || (x%4==0 && x%100)) cout<<366<<endl;
-    else cout<<365<<endl;
+    int n, x; ll ans=0, sum=0;
+    cin>>n;
+    vector<ll> f(32, 0ll);
+    for(int i=1; i<=n; i++)
+    {
+        cin>>x; sum+=x;
+        for(int j=0; j<=30; j++)
+        {
+            if((x>>j)&1) f[j]=i-f[j];
+            ans+=f[j]*(1<<j);
+        }
+    }
+    cout<<ans-sum<<endl;
 	return 0;
 }

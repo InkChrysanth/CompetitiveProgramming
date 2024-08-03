@@ -1,12 +1,4 @@
-// Problem: C - Minimum Glutton
-// Contest: AtCoder - Japan Registry Services (JPRS) Programming Contest 2024#2 (AtCoder Beginner Contest 364)
-// URL: https://atcoder.jp/contests/abc364/tasks/abc364_c
-// Memory Limit: 1024 MB
-// Time Limit: 2000 ms
-// 
-// Powered by CP Editor (https://cpeditor.org)
-
-//#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops")
+//#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -18,7 +10,6 @@ using namespace std;
 #define Fre(s) Fi(s".in"),Fo(s".out")
 #define all(x) x.begin(), x.end()
 #define each(i,x) for(auto &i:(x))
-#define sz(x) int((x).size())
 #define fi first
 #define se second
 #define endl '\n'
@@ -27,12 +18,10 @@ using namespace std;
 #define pb push_back
 #define eb emplace_back
 
-
-using lll=__int128;
 using ll=long long;
 using ld=long double;
 using pii=pair<int, int>;
-using pll=pair<ll, ll>;
+using pli=pair<ll, int>;
 
 constexpr int inf=0x3f3f3f3f;
 constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
@@ -40,36 +29,28 @@ constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
 signed main()
 {
 	cin.tie(0)->sync_with_stdio(0);
-	int n;
-	ll ta, tb;
-	cin>>n>>ta>>tb;
-	vector<ll> a(n+1), b(n+1);
-	for(int i=1; i<=n; i++)
-		cin>>a[i];
-	for(int i=1; i<=n; i++)
-		cin>>b[i];
-	sort(a.begin()+1, a.end(), greater<int>());
-	sort(b.begin()+1, b.end(), greater<int>());
-	int cnta=n, cntb=n;
-	ll suma=0, sumb=0;
-	for(int i=1; i<=n; i++)
-	{
-		if(suma+a[i]<=ta) suma+=a[i];
-		else
-		{
-			cnta=i;
-			break;
-		}
-	}
-	for(int i=1; i<=n; i++)
-	{
-		if(sumb+b[i]<=tb) sumb+=b[i];
-		else
-		{
-			cntb=i;
-			break;
-		}
-	}
-	cout<<min(cnta, cntb)<<endl;
+    int n; ll k, sum=0;
+    cin>>n>>k;
+    vector<ll> a(n+1);
+    for(int i=1; i<=n; i++) cin>>a[i], sum+=a[i];
+    if(sum<=k)
+    {
+        cout<<"infinite"<<endl;
+        return 0;
+    }
+    auto check=[&](ll mid)
+    {
+        ll res=0;
+        for(int i=1; i<=n; i++) res+=min(a[i], mid);
+        return res<=k;
+    };
+    ll l=0, r=1e15, ans=r;
+    while(l<=r)
+    {
+        ll mid=(l+r)>>1;
+        if(check(mid)) l=mid+1, ans=mid;
+        else r=mid-1;
+    }
+    cout<<ans<<endl;
 	return 0;
 }
