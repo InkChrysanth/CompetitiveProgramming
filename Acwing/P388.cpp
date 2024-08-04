@@ -37,31 +37,34 @@ signed main()
 	cin.tie(0)->sync_with_stdio(0);
 	int n, m;
 	cin>>n>>m;
-	vector<int> a(n);
+
+	vector<int> a(n), s(1<<n, 0);
 	vector<Edge> E(m);
+
 	for(int i=0; i<n; i++) cin>>a[i];
+	for(int i=1; i<1<<n; i++)
+		for(int j=0; j<n; j++)
+			if((i>>j)&1)
+				s[i]+=a[j];
 	for(int i=0, u, v, w; i<m; i++)
 	{
 		cin>>u>>v>>w;
 		E[i]={u, v, w};
 	}
 	sort(all(E));
+
 	auto kruskal=[&](int st)
 	{
 		vector<int> p(n);
-		for(int i=0; i<n; i++) p[i]=i;
 		function<int(int)> find=[&](int x)
 		{
 			if(x==p[x]) return x;
 			return p[x]=find(p[x]);
 		};
-		
-		int sum=0, P=0;
 		for(int i=0; i<n; i++)
 			if((st>>i)&1)
-				sum+=a[i], P++;
-		if(sum!=0) return inf;
-		int res=0, cnt=0;
+				p[i]=i;
+		int res=0;
 		each(e, E)
 		{
 			if((st>>e.u)&1 && (st>>e.v)&1)
@@ -71,21 +74,28 @@ signed main()
 				{
 					p[fv]=fu;
 					res+=e.w;
-					cnt++;
 				}
 			}
 		}
-		return P==cnt-1 ? res : inf;
+		int pid=-1;
+		for(int i=0; i<n; i++)
+			if((st>>i)&1)
+			{
+				if(pid==-1) pid=find(i);
+				else if(pid!=find(i)) return inf;
+			}
+		return res;
 	};
-	vector<int> f(1<<n);
+	vector<int> d(1<<n, inf);
 	for(int i=1; i<(1<<n); i++)
-		f[i]=kruskal(i);
-	vector<int> g(1<<n, inf);
-	g[0]=0;
-	for(int i=1; i<(1<<n); i++)
-		for(int j=i; j>0; j--)
-			cmin(g[i], g[i^j]+f[j]);
-	if(g[(1<<n)-1]==inf) cout<<"Impossible"<<endl;
-	else cout<<g[(1<<n)-1]<<endl;
+		if(!s[i])
+			d[i]=kruskal(i);
+	vector<int> f(1<<n, inf);
+	f[0]=0;
+	for(int i=1; i<1<<n; i++)
+		for(int j=i; j>=1; j=(j-1)&i)
+			cmin(f[i], f[i^j]+d[j]);
+	if(f[(1<<n)-1]==inf) cout<<"Impossible"<<endl;
+	else cout<<f[(1<<n)-1]<<endl;
 	return 0;
 }
