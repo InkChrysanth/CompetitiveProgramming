@@ -1,9 +1,6 @@
 线段树优化dp:
 Acw P295 296 329
 
-单调队列优化dp:
-Acw P298
-
 图论:
 P383 384 353 357 393
 
@@ -20,7 +17,6 @@ Educational Codeforces Round 168
 
 ABC 364 E F G
 ABC 365 F G
-ARC 181 A B C
 
 洛谷任务计划
 
