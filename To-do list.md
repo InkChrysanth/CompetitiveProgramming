@@ -14,7 +14,6 @@ NOIP #5 B D
 Codeforces Round 960
 Codeforces Round 961
 Codeforces Round 962
-Codeforces Round 965 C D E
 Educational Codeforces Round 168
 
 ABC 364 E F G
