@@ -1,69 +1,4 @@
-#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
-#include <bits/stdc++.h>
-using namespace std;
-
-#define cmin(i,j) (i)=min((i),(j))
-#define cmax(i,j) (i)=max((i),(j))
-#define debug(x) cerr<<#x<<": "<<(x)<<endl
-#define Fi(s) freopen(s,"r",stdin)
-#define Fo(s) freopen(s,"w",stdout)
-#define Fre(s) Fi(s".in"),Fo(s".out")
-#define all(x) x.begin(), x.end()
-#define each(i,x) for(auto &i:(x))
-#define fi first
-#define se second
-#define endl '\n'
-#define pq priority_queue
-#define mp make_pair
-#define pb push_back
-#define eb emplace_back
-
-using ll=long long;
-using ld=long double;
-using pii=pair<int, int>;
-using pli=pair<ll, int>;
-
-constexpr int inf=0x3f3f3f3f;
-constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
-constexpr int mod=998244353;
-
-signed main()
-{
-	cin.tie(0)->sync_with_stdio(0);
-    string num;
-    int n, m, k;
-    cin>>n>>m>>k>>num;
-    num=" "+num;
-    auto query=[&](string s)
-    {
-        int res=0;
-        each(x, s) res=(1ll*res*k%mod+x-'0')%mod;
-        return res;
-    };
-    for(int i=1, opt, l, r; i<=m; i++)
-    {
-        cin>>opt>>l>>r;
-        switch(opt)
-        {
-            case 1:
-                num[l]=r+'0';
-                break;
-            case 2:
-                stable_sort(num.begin()+l, num.begin()+r+1);
-                break;
-            case 3:
-                stable_sort(num.begin()+l, num.begin()+r+1, greater<char>());
-                break;
-            case 4:
-                cout<<query(num.substr(l, r-l+1))<<endl;
-                break;
-            default: break;
-        }
-    }
-	return 0;
-}
 //ODT(100pts) 类似https://www.luogu.com.cn/problem/P2824
-/*
 #include<bits/stdc++.h>
 using namespace std;
 const int N=5e4+5;
@@ -180,6 +115,72 @@ int main(){
 		else printf("%lld\n",qu(a,b)%mod);
 //		print();
 	}
+	return 0;
+}
+//Brute Force(30pts)
+/*
+#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
+#include <bits/stdc++.h>
+using namespace std;
+
+#define cmin(i,j) (i)=min((i),(j))
+#define cmax(i,j) (i)=max((i),(j))
+#define debug(x) cerr<<#x<<": "<<(x)<<endl
+#define Fi(s) freopen(s,"r",stdin)
+#define Fo(s) freopen(s,"w",stdout)
+#define Fre(s) Fi(s".in"),Fo(s".out")
+#define all(x) x.begin(), x.end()
+#define each(i,x) for(auto &i:(x))
+#define fi first
+#define se second
+#define endl '\n'
+#define pq priority_queue
+#define mp make_pair
+#define pb push_back
+#define eb emplace_back
+
+using ll=long long;
+using ld=long double;
+using pii=pair<int, int>;
+using pli=pair<ll, int>;
+
+constexpr int inf=0x3f3f3f3f;
+constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
+constexpr int mod=998244353;
+
+signed main()
+{
+	cin.tie(0)->sync_with_stdio(0);
+    string num;
+    int n, m, k;
+    cin>>n>>m>>k>>num;
+    num=" "+num;
+    auto query=[&](string s)
+    {
+        int res=0;
+        each(x, s) res=(1ll*res*k%mod+x-'0')%mod;
+        return res;
+    };
+    for(int i=1, opt, l, r; i<=m; i++)
+    {
+        cin>>opt>>l>>r;
+        switch(opt)
+        {
+            case 1:
+                num[l]=r+'0';
+                break;
+            case 2:
+                stable_sort(num.begin()+l, num.begin()+r+1);
+                break;
+            case 3:
+                stable_sort(num.begin()+l, num.begin()+r+1, greater<char>());
+                break;
+            case 4:
+                cout<<query(num.substr(l, r-l+1))<<endl;
+                break;
+            default: break;
+        }
+    }
 	return 0;
 }
 */
