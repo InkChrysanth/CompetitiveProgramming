@@ -16,7 +16,7 @@ Codeforces Round 961
 Codeforces Round 962
 Educational Codeforces Round 168
 
-ABC 364 E F G
+ABC 364 F G
 ABC 365 F G
 ABC 366 D E F G
 
