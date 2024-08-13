@@ -16,12 +16,9 @@ Codeforces Round 961
 Codeforces Round 962
 Educational Codeforces Round 168
 
-ABC 364 F G
 ABC 365 F G
 ABC 366 D E F G
 
 洛谷任务计划
 
 vjudge.net/contest/643108
-
-附言：如果有时间可以补一下以前的abc
