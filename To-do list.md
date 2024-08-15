@@ -17,8 +17,6 @@ Codeforces Round 962 D E F G
 Educational Codeforces Round 168
 Codeforces Round 966 (Div. 3) E F G H
 
-ABC 366 D E F G
-
 https://vjudge.net/contest/643108
 
 To be solved in the future:
