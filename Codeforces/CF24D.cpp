@@ -31,7 +31,7 @@ constexpr ld eps=1e-6;
 int n, m, x, y;
 ld a[N][N], f[N][N];
 
-void guass()
+void gauss()
 {
     ld t;
     for(int i=1; i<=m; i++)
@@ -70,7 +70,7 @@ signed main()
             a[j][m+1]=f[i+1][j]/4+1;
         }
         
-        guass();
+        gauss();
 
         for(int j=1; j<=m; j++)
             f[i][j]=a[j][m+1];
