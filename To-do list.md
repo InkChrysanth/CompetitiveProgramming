@@ -1,5 +1,5 @@
 线段树优化dp:
-Acw P295 296 329
+P295 296 329
 
 图论:
 P383 384 353 357 393
@@ -11,14 +11,17 @@ NOIP #3 A B C D
 NOIP #4 A B C D
 NOIP #5 B D
 
-Codeforces Round 960
-Codeforces Round 961
-Codeforces Round 962
+Codeforces Round 960 C D E F
+Codeforces Round 961 B2 C D E2
+Codeforces Round 962 D E F G
 Educational Codeforces Round 168
+Codeforces Round 966 (Div. 3) E F G H
 
-ABC 365 F G
 ABC 366 D E F G
 
-洛谷任务计划
+https://vjudge.net/contest/643108
 
-vjudge.net/contest/643108
+To be solved in the future:
+AT_abc363_g
+AT_agc008_f
+CF1998E2
