@@ -26,8 +26,8 @@ struct matrix
     {
         matrix res;
         for(int i=0; i<N; i++)
-            for(int k=0; k<N; k++)
-                for(int j=0; j<N; j++)
+            for(int j=0; j<N; j++)
+                for(int k=0; k<N; k++)
                     res.a[i][j]=(res.a[i][j]+a[i][k]*T.a[k][j])%mod;
         return res;
     }
