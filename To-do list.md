@@ -10,6 +10,7 @@ NOIP #2 C D
 NOIP #3 A B C D
 NOIP #4 A B C D
 NOIP #5 B D
+NOIP #6 A B C D
 
 Codeforces Round 960 C D E F
 Codeforces Round 961 B2 C D E2
