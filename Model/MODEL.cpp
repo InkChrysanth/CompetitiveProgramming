@@ -12,16 +12,18 @@ using namespace std;
 #define each(i,x) for(auto &i:(x))
 #define fi first
 #define se second
-#define endl '\n'
+#define endl "\n"
 #define pq priority_queue
 #define mp make_pair
 #define pb push_back
 #define eb emplace_back
+#define em emplace
 
 using ll=long long;
+using ull=unsigned long long;
 using ld=long double;
 using pii=pair<int, int>;
-using pli=pair<ll, int>;
+using pil=pair<ll, ll>;
 
 constexpr int inf=0x3f3f3f3f;
 constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;

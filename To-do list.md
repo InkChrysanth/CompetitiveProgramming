@@ -15,6 +15,7 @@ Codeforces Round 962 D E F G
 Educational Codeforces Round 168
 Codeforces Round 966 (Div. 3) E F G H
 Educational Codeforces Round 169
+Codeforces Round 967 (Div. 2) D E
 
 https://vjudge.net/contest/643108
 
