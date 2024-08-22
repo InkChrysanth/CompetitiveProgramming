@@ -23,7 +23,7 @@ using ll=long long;
 using ull=unsigned long long;
 using ld=long double;
 using pii=pair<int, int>;
-using pil=pair<ll, ll>;
+using pll=pair<ll, ll>;
 
 constexpr int inf=0x3f3f3f3f;
 constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
