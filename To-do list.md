@@ -4,6 +4,7 @@ NOIP simulation #3 A B C D
 NOIP simulation #4 A B C D
 NOIP simulation #5 B D
 NOIP simulation #6 A B C D
+NOIP simulation #7 A B C D
 
 https://vjudge.net/contest/643108
 
