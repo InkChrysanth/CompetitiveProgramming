@@ -1,3 +1,4 @@
+NOIP simulation ##1 A B C D
 NOIP simulation #1 B D
 NOIP simulation #2 C D
 NOIP simulation #3 A B C D
@@ -5,6 +6,7 @@ NOIP simulation #4 A B C D
 NOIP simulation #5 B D
 NOIP simulation #6 A B C D
 NOIP simulation #7 A B C D
+NOIP simulation #8 A B C D
 
 https://vjudge.net/contest/643108
 
@@ -16,5 +18,7 @@ Codeforces Round 965 (Div. 2) E
 Codeforces Round 966 (Div. 3) E F G H
 Educational Codeforces Round 169
 Codeforces Round 967 (Div. 2) D E
+
+AtCoder Beginner Contest 370 F G
 
 past JOI problems & AtCoder Beginner Contest problems
