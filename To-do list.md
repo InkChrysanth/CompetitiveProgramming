@@ -12,14 +12,9 @@ NOIP simulation #9 A B C D
 https://vjudge.net/contest/643108
 _abcd_ ds graph
 
-Codeforces Round 961 B C D E
-Codeforces Round 962 D E F G
+EPIC Institute of Technology Round August 2024 (Div. 1 + Div. 2)
 Educational Codeforces Round 168
-Codeforces Round 965 (Div. 2) E
-Codeforces Round 966 (Div. 3) E F G H
 Educational Codeforces Round 169
-Codeforces Round 967 (Div. 2) D E
-
-AtCoder Beginner Contest 371 F G
+Codeforces Round 969 (Div. 1, Div. 2)
 
 past JOI problems & AtCoder Beginner Contest problems
