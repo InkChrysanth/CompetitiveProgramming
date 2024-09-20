@@ -31,6 +31,6 @@ constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
 signed main()
 {
 	cin.tie(0)->sync_with_stdio(0);
-
+	
 	return 0;
 }
