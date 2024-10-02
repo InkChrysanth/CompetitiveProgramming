@@ -1,13 +1,4 @@
-NOIP simulation ##1 A B C D  
-NOIP simulation #1 B D  
-NOIP simulation #2 C D  
-NOIP simulation #3 A B C D  
-NOIP simulation #4 A B C D  
-NOIP simulation #5 B D  
-NOIP simulation #6 A B C D  
-NOIP simulation #7 A B C D  
-NOIP simulation #8 A B C D  
-NOIP simulation #9 A B C D  
+NOIP simulation #1 ~ #10  
   
 https://vjudge.net/contest/643108  
 \_abcd_ ds graph  
