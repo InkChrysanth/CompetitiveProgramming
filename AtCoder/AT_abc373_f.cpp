@@ -38,6 +38,7 @@ signed main()
     {
         int w, v;
         cin>>w>>v;
+        // use weight as index
         items[w].eb(v);
     }
     priority_queue<int> heap;
@@ -60,3 +61,4 @@ signed main()
     cout<<f[W]<<endl;
 	return 0;
 }
+// dp, data structure
