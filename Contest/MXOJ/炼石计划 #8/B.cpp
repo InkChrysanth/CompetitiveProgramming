@@ -27,19 +27,37 @@ using pll=pair<ll, ll>;
 
 constexpr int inf=0x3f3f3f3f;
 constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
+constexpr int mod=998244353;
 
 signed main()
 {
-    Fre("alive");//あなた達、Roseliaにすべてを賭ける覚悟はある?
 	cin.tie(0)->sync_with_stdio(0);
-    int n, k, ans=0;
-    cin>>n>>k;
-    vector<int> x(2*n*n+k);
-    for(int i=1; i<=n; i++) for(int j=1; j<=n; j++)
-        x[i*i+j*j]++;
-    for(int i=1; i<=n; i++) for(int j=1; j<=n; j++)
-        ans+=(i*i-j*j+k>0 ? x[i*i-j*j+k] : 0);
-    cout<<ans<<endl;
+    Fre("aspect");//あなた達、Roseliaにすべてを賭ける覚悟はある?
+    int n; string s;
+    cin>>n>>s;
+    vector<ll> f(n+1); f[n]=1;
+    for(int i=0; i<n; i++)
+    {
+        vector<ll> _f(n+1);
+        if(s[i]=='0')
+        {
+            ll sum=0;
+            for(int j=n-i; j>=1; j--)
+            {
+                (sum+=f[j])%=mod;
+                _f[j-1]=sum;
+            }
+            for(int j=n-i-1; j>=0; j--)
+                (_f[j]+=f[j]*(n-i-j))%=mod;
+        }
+        else
+        {
+            for(int j=n-i; j>=1; j--)
+                _f[j-1]=(f[j]*j)%mod;
+        }
+        swap(f, _f);
+    }
+    cout<<f[0]%mod<<endl;
     return 0;
 }
-// Ad-hoc, implementation
+// dp
