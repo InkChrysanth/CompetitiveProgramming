@@ -83,4 +83,4 @@ signed main()
 	}
     return 0;
 }
-// data structures, math
+// data structures(SegmentTree), math
