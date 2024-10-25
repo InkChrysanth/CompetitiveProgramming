@@ -8,4 +8,4 @@ Educational Codeforces Round 168
 Educational Codeforces Round 169  
 Codeforces Round 969 (Div. 1, Div. 2)  
   
-past JOI problems & AtCoder Beginner Contest problems  
+past JOI problems

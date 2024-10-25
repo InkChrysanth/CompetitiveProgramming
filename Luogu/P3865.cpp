@@ -1,53 +1,70 @@
-// Problem: P3865 【模板】ST 表
-// Contest: Luogu
-// URL: https://www.luogu.com.cn/problem/P3865
-// Memory Limit: 125 MB
-// Time Limit: 800 ms
-
+//#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
 #include <bits/stdc++.h>
-#define int_rd (int)read()
-#define ll_rd read()
-#define endl '\n'
-#define mp make_pair
-
 using namespace std;
 
-typedef long long ll;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
+#define cmin(i,j) (i)=min((i),(j))
+#define cmax(i,j) (i)=max((i),(j))
+#define debug(x) cerr<<#x<<": "<<(x)<<endl
+#define all(x) x.begin(), x.end()
+#define each(i,x) for(auto &i:(x))
+#define fi first
+#define se second
+#define endl "\n"
+#define pq priority_queue
+#define mp make_pair
+#define pb push_back
+#define eb emplace_back
+#define ins insert
 
-inline ll read()
-{
-	ll a=0; int f=0; char p=getchar();
-	while(!isdigit(p)){f|=p=='-'; p=getchar();}
-	while(isdigit(p)){a=(a<<3)+(a<<1)+(p^48); p=getchar();}
-	return f?-a:a;
+using ll=long long;
+using ull=unsigned long long;
+using db=double;
+using ld=long double;
+using pii=pair<int, int>;
+using pll=pair<ll, ll>;
+
+inline namespace FileIO{
+void setIn(string s) { freopen(s.c_str(), "r", stdin); }
+void setOut(string s) { freopen(s.c_str(), "w", stdout); }
+void setIO(string s="")
+{	
+	cin.tie(0)->sync_with_stdio(0);
+	cin.exceptions(cin.failbit);
+	#ifndef LOCAL
+        if(s.size()) setIn(s+".in"), setOut(s+".out");
+	#else
+        setIn("inkorange.in"), setOut("inkorange.out");
+    #endif
+}
 }
 
-const int N=100010;
+constexpr int inf=0x3f3f3f3f;
+constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
+constexpr int N=100010;
 
 int n, m;
-int st[N][20];
-
-int query(int l, int r)
-{
-	int k=log2(r-l+1);
-	return max(st[l][k], st[r-(1<<k)+1][k]);
-}
+int a[N];
+int st[N][21];
 
 signed main()
 {
-	cin.tie(0); cout.tie(0);
-	n=int_rd, m=int_rd;
-	for(int i=1; i<=n; i++)
-		st[i][0]=int_rd;
-	for(int k=1; k<=20; k++)
-		for(int i=1; i+(1<<k)-1<=n; i++)
-			st[i][k]=max(st[i][k-1], st[i+(1<<(k-1))][k-1]);
-	while(m--)
-	{
-		int l=int_rd, r=int_rd;
-		cout<<query(l, r)<<endl;
-	}
+	setIO();
+    cin>>n>>m;
+    for(int i=1; i<=n; i++) cin>>a[i];
+    for(int i=1; i<=n; i++)
+        st[i][0]=a[i];
+    for(int k=1; k<=20; k++)
+        for(int i=1; i<=n-(1<<k)+1; i++)
+            st[i][k]=max(st[i][k-1], st[i+(1<<(k-1))][k-1]);
+    auto query=[&](int l, int r)
+    {
+        int k=log2(r-l+1);
+        return max(st[l][k], st[r-(1<<k)+1][k]);
+    };
+    while(m--)
+    {
+        int l, r; cin>>l>>r;
+        cout<<query(l, r)<<endl;
+    }
 	return 0;
 }
