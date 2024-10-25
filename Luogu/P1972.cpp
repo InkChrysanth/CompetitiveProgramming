@@ -1,3 +1,86 @@
+//#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
+#include <bits/stdc++.h>
+using namespace std;
+
+#define cmin(i,j) (i)=min((i),(j))
+#define cmax(i,j) (i)=max((i),(j))
+#define debug(x) cerr<<#x<<": "<<(x)<<endl
+#define all(x) x.begin(), x.end()
+#define each(i,x) for(auto &i:(x))
+#define fi first
+#define se second
+#define endl "\n"
+#define pq priority_queue
+#define mp make_pair
+#define pb push_back
+#define eb emplace_back
+#define ins insert
+
+using ll=long long;
+using ull=unsigned long long;
+using db=double;
+using ld=long double;
+using pii=pair<int, int>;
+using pll=pair<ll, ll>;
+
+inline namespace FileIO{
+void setIn(string s) { freopen(s.c_str(), "r", stdin); }
+void setOut(string s) { freopen(s.c_str(), "w", stdout); }
+void setIO(string s="")
+{	
+	cin.tie(0)->sync_with_stdio(0);
+	cin.exceptions(cin.failbit);
+	#ifndef LOCAL
+        if(s.size()) setIn(s+".in"), setOut(s+".out");
+	#else
+        setIn("inkorange.in"), setOut("inkorange.out");
+    #endif
+}
+}
+
+constexpr int inf=0x3f3f3f3f;
+constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
+constexpr int N=1000010;
+
+struct Node{ int id, l, r; };
+
+struct Fenwick
+{
+    int cnt[N];
+    int lowbit(int x){ return x&-x; }
+    void add(int x, int v){ for(; x<N; x+=lowbit(x)) cnt[x]+=v; }
+    int query(int x){ int res=0; for(; x; x-=lowbit(x)) res+=cnt[x]; return res; }
+} tr;
+
+signed main()
+{
+	setIO();
+	int n; cin>>n;
+    vector<int> col(n+1);
+    for(int i=1; i<=n; i++) cin>>col[i];
+    int m; cin>>m;
+    vector<Node> segs(m+1);
+    for(int i=1; i<=m; i++)
+        cin>>segs[i].l>>segs[i].r, segs[i].id=i;
+    sort(segs.begin()+1, segs.begin()+m+1, [](const auto &x, const auto &y){ return x.r<y.r; });
+    int lst=1;
+    vector<int> vis(N), ans(m+1);
+    for(int i=1; i<=m; i++)
+    {
+        for(int j=lst; j<=segs[i].r; j++)
+        {
+            if(vis[col[j]]) tr.add(vis[col[j]], -1);
+            tr.add(j, 1);
+            vis[col[j]]=j;
+        }
+        lst=segs[i].r+1;
+        ans[segs[i].id]=tr.query(segs[i].r)-tr.query(segs[i].l-1);
+    }
+    for(int i=1; i<=m; i++) cout<<ans[i]<<endl;
+	return 0;
+}
+// The solution below uses Mo's algorithm(specially modified)
+/*
 // Problem: P1972 [SDOI2009] HH的项链
 // Contest: Luogu
 // URL: https://www.luogu.com.cn/problem/P1972
@@ -133,3 +216,4 @@ signed main()
 		fout<<ans[i]<<endl;
 	return 0;
 }
+*/
