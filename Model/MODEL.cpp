@@ -23,9 +23,6 @@ using ld=long double;
 using pii=pair<int, int>;
 using pll=pair<ll, ll>;
 
-constexpr int inf=0x3f3f3f3f;
-constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
-
 inline namespace FileIO{
 void setIn(string s) { freopen(s.c_str(), "r", stdin); }
 void setOut(string s) { freopen(s.c_str(), "w", stdout); }
@@ -33,13 +30,16 @@ void setIO(string s="")
 {	
 	cin.tie(0)->sync_with_stdio(0);
 	cin.exceptions(cin.failbit);
-	#ifdef LOCAL
-		setIn("inkorange.in"), setOut("inkorange.out");
-	#elifndef CPH
-		if(s.size()) setIn(s+".in"), setOut(s+".out");
-	#endif
+	#ifndef LOCAL
+        if(s.size()) setIn(s+".in"), setOut(s+".out");
+	#else
+        setIn("inkorange.in"), setOut("inkorange.out");
+    #endif
 }
 }
+
+constexpr int inf=0x3f3f3f3f;
+constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
 
 signed main()
 {
