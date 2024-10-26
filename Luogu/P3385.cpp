@@ -1,75 +1,88 @@
-// Problem: P3385 【模板】负环
-// Contest: Luogu
-// URL: https://www.luogu.com.cn/problem/P3385
-// Memory Limit: 256 MB
-// Time Limit: 2000 ms
-
+//#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
 #include <bits/stdc++.h>
-#define int_rd (int)read()
-#define ll_rd read()
-#define endl '\n'
-#define mp make_pair
-
 using namespace std;
 
-typedef long long ll;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
+#define cmin(i,j) (i)=min((i),(j))
+#define cmax(i,j) (i)=max((i),(j))
+#define debug(x) cerr<<#x<<": "<<(x)<<endl
+#define all(x) x.begin(), x.end()
+#define each(i,x) for(auto &i:(x))
+#define fi first
+#define se second
+#define endl "\n"
+#define pq priority_queue
+#define mp make_pair
+#define pb push_back
+#define eb emplace_back
+#define ins insert
 
-inline ll read()
-{
-	ll a=0; int f=0; char p=getchar();
-	while(!isdigit(p)){f|=p=='-'; p=getchar();}
-	while(isdigit(p)){a=(a<<3)+(a<<1)+(p^48); p=getchar();}
-	return f?-a:a;
+using ll=long long;
+using ull=unsigned long long;
+using db=double;
+using ld=long double;
+using pii=pair<int, int>;
+using pll=pair<ll, ll>;
+
+inline namespace FileIO{
+void setIn(string s) { freopen(s.c_str(), "r", stdin); }
+void setOut(string s) { freopen(s.c_str(), "w", stdout); }
+void setIO(string s="")
+{	
+	cin.tie(0)->sync_with_stdio(0);
+	cin.exceptions(cin.failbit);
+	#ifndef LOCAL
+        if(s.size()) setIn(s+".in"), setOut(s+".out");
+	#else
+        setIn("inkorange.in"), setOut("inkorange.out");
+    #endif
+}
 }
 
-const int N=2010, INF=INT_MAX;
-int n, m;
-int dist[N], cnt[N];
-bool vis[N];
-
-void spfa()
-{
-	vector<pii> g[N];
-	n=int_rd, m=int_rd;
-	for(int i=1; i<=m; i++)
-	{
-		int u=int_rd, v=int_rd, w=int_rd;
-		g[u].emplace_back(mp(v, w));
-		if(w>=0) g[v].emplace_back(mp(u, w));
-	}
-	queue<int> q;
-	memset(cnt, 0, sizeof cnt);
-	memset(vis, false, sizeof vis);
-	fill(dist+1, dist+n+1, INF);
-	dist[1]=0, vis[1]=false, q.push(1);
-	while(q.size())
-	{
-		auto u=q.front(); q.pop();
-		vis[u]=false;
-		for(auto [v, w]: g[u])
-		{
-			if(dist[v]>dist[u]+w)
-			{
-				dist[v]=dist[u]+w;
-				cnt[v]=cnt[u]+1;
-				if(cnt[v]>=n)
-				{
-					puts("YES");
-					return;
-				}
-				if(!vis[v]) vis[v]=true, q.push(v);
-			}
-		}
-	}
-	puts("NO");
-}
+constexpr int inf=0x3f3f3f3f;
+constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
 
 signed main()
 {
-	cin.tie(0); cout.tie(0);
-	int T=int_rd;
-	while(T--) spfa();
+	setIO();
+	int T; cin>>T;
+    while(T--)
+    {
+        int n, m; cin>>n>>m;
+        vector<vector<pii>> g(n+1);
+        for(int i=1; i<=m; i++)
+        {
+            int u, v, w; cin>>u>>v>>w;
+            g[u].eb(mp(v, w));
+            if(w>=0) g[v].eb(mp(u, w));
+        }
+        queue<int> q;
+        vector<int> dist(n+1, inf), cnt(n+1);
+        vector<bool> vis(n+1);
+        dist[1]=0;
+        q.push(1), vis[1]=true;
+        while(q.size())
+        {
+            int u=q.front(); q.pop();
+            vis[u]=false;
+            each(t, g[u])
+            {
+                int v=t.fi, w=t.se;
+                if(dist[v]>dist[u]+w)
+                {
+                    dist[v]=dist[u]+w;
+                    cnt[v]=cnt[u]+1;
+                    if(cnt[v]>=n)
+                    {
+                        cout<<"YES"<<endl;
+                        goto label;
+                    }
+                    if(!vis[v]) q.push(v), vis[v]=true;
+                }
+            }
+        }
+        cout<<"NO"<<endl;
+        label: ;
+    }
 	return 0;
 }
+// graphs(spfa)
