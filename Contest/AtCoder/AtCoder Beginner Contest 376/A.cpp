@@ -41,4 +41,4 @@ signed main()
     cout<<cnt<<endl;
 	return 0;
 }
-// implement
+// implementation

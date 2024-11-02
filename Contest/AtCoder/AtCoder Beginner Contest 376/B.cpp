@@ -49,4 +49,4 @@ signed main()
     cout<<ans<<endl;
 	return 0;
 }
-// implement
+// implementation
