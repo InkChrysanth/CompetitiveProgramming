@@ -29,7 +29,7 @@ void setOut(string s) { freopen(s.c_str(), "w", stdout); }
 void setIO(string s="")
 {	
 	cin.tie(0)->sync_with_stdio(0);
-	// cin.exceptions(cin.failbit);
+	cin.exceptions(cin.failbit);
 	#ifndef LOCAL
         if(s.size()) setIn(s+".in"), setOut(s+".out");
 	#else
