@@ -9,5 +9,3 @@ past JOI problems
 past ABC/ARC problems  
   
 NOIP 苏州强校邀请赛 #1 ~ #7  
-  
-https://pjudge.ac/contest/1811  
