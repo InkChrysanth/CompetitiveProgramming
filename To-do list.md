@@ -9,3 +9,7 @@ past JOI problems
 past ABC/ARC problems  
   
 NOIP 苏州强校邀请赛 #1 ~ #7  
+  
+https://codeforces.com/contest/1930(https://www.bilibili.com/video/BV1gt421h7T1/)  
+  
+https://xsdoi.com/contest/1372(https://mp.weixin.qq.com/s/JNOUKSOTjEGeguLkglBdMw)  
