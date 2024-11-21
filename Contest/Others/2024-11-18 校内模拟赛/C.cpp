@@ -55,7 +55,7 @@ signed main()
 	auto check=[&](int mid) -> bool
 	{
 		int k=pos.size(), x=k-mid;
-		for(int i=0; i<mid; i++)
+		for(int i=0; i<=mid; i++)
 		{
 			int l=pos[i], r=pos[i+x-1];
 			if(r-l+1-x<=mid)	
