@@ -31,7 +31,7 @@ void setIO(string s="")
 	cin.tie(0)->sync_with_stdio(0);
 	cin.exceptions(cin.failbit);
 	#ifndef LOCAL
-        if(s.size()) setIn(1+".in"), setOut(1+".out");
+        if(s.size()) setIn(s+".in"), setOut(s+".out");
 	#else
         setIn("inkorange.in"), setOut("inkorange.out");
     #endif
@@ -40,7 +40,6 @@ void setIO(string s="")
 
 constexpr int inf=0x3f3f3f3f;
 constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
-constexpr int mod=998244353;
 
 signed main()
 {
