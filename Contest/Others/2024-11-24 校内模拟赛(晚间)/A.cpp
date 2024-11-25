@@ -1,4 +1,4 @@
-#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
+// #pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -28,11 +28,11 @@ void setIn(string s) { freopen(s.c_str(), "r", stdin); }
 void setOut(string s) { freopen(s.c_str(), "w", stdout); }
 void setIO(string s="")
 {	
-	cin.tie(0)->sync_with_stdio(0);
-	cin.exceptions(cin.failbit);
-	#ifndef LOCAL
+    cin.tie(0)->sync_with_stdio(0);
+    cin.exceptions(cin.failbit);
+    #ifndef LOCAL
         if(s.size()) setIn(s+".in"), setOut(s+".out");
-	#else
+    #else
         setIn("inkorange.in"), setOut("inkorange.out");
     #endif
 }
@@ -43,27 +43,20 @@ constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
 
 signed main()
 {
-	setIO("colorful");
-    int n, m; cin>>n>>m;
-    vector<vector<int>> a(n+1, vector<int>(m+1));
-    vector<int> cnt(1000001);
-    for(int i=1; i<=n; i++) for(int j=1; j<=m; j++)
-        cin>>a[i][j];
-    ll ans=1ll*n*m*(n+1)*(m+1)/4;/*alert: signed int overflow*/
-	for(int i=1; i<=n; i++) for(int k=1; k<=i; k++)
-    {
-        for(int j=1; j<=m; j++)
-        {
-            if(a[k][j]==a[i][j])
-            {
-                cnt[a[i][j]]++;
-                ans-=cnt[a[i][j]];
-            }
-        }
-        for(int j=1; j<=m; j++) if(a[k][j]==a[i][j])
-            cnt[a[i][j]]--;
-    }
-    cout<<ans<<endl;
+    setIO();
+    int n; cin>>n;
+    vector<string> a(n);
+    each(s, a) cin>>s;
+    // for(int i=0; i<n; i++)
+    // {
+    //     string res=a[i], ns=a[i]+a[i];
+    //     for(int j=0; j<(int)a[i].size(); j++)
+    //         cmin(res, ns.substr(j, n));
+    //     a[i]=res;
+    //     cerr<<res<<endl;
+    // }
+    sort(all(a), [](string x, string y){ return x+y<y+x; });
+    each(s, a) cout<<s;
     return 0;
 }
-// prefix sum, brute force, math
+// strings, sortings

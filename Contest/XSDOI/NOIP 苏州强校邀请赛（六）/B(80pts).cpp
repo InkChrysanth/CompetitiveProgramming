@@ -104,3 +104,4 @@ signed main()
     cout<<odt.query(0, T)<<endl;
 	return 0;
 }
+// data structures, math

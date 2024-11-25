@@ -1,4 +1,4 @@
-#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
+// #pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,inline")
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -28,11 +28,11 @@ void setIn(string s) { freopen(s.c_str(), "r", stdin); }
 void setOut(string s) { freopen(s.c_str(), "w", stdout); }
 void setIO(string s="")
 {	
-	cin.tie(0)->sync_with_stdio(0);
-	cin.exceptions(cin.failbit);
-	#ifndef LOCAL
+    cin.tie(0)->sync_with_stdio(0);
+    cin.exceptions(cin.failbit);
+    #ifndef LOCAL
         if(s.size()) setIn(s+".in"), setOut(s+".out");
-	#else
+    #else
         setIn("inkorange.in"), setOut("inkorange.out");
     #endif
 }
@@ -43,30 +43,30 @@ constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
 
 signed main()
 {
-	setIO("segment");
-    int n, q; cin>>n>>q;
-    vector<vector<int>> f(n+1, vector<int>(n+1));
-    vector<vector<int>> a(n+1, vector<int>(n+1)), sum(n+1, vector<int>(n+1));
-    vector<int> cnt(n+1);
-    for(int i=1; i<=q; i++)
+    setIO();
+    int n, k; cin>>n>>k;
+    vector<vector<int>> g(n+1);
+    int ans=0;
+    for(int i=1; i<=n; i++)
     {
-        int l, r; cin>>l>>r;
-        a[l][r]++;
-        cnt[l]++; cnt[r]--;
+        int x; cin>>x;
+        if(i==1 && x!=1){ ans++; continue;}
+        g[x].eb(i);
     }
-    for(int i=1; i<=n; i++) cnt[i]+=cnt[i-1];
-    for(int l=1; l<=n; l++)
-        for(int r=n; r>=l; r--)
-            sum[l][r]=sum[l-1][r]+sum[l][r+1]-sum[l-1][r+1]+a[l][r];
-    for(int len=2; len<=n; len++)
-        for(int l=1; l+len-1<=n; l++)
+    vector<int> dep(n+1);
+    function<void(int, int)> dfs=[&](int u, int par)
+    {
+        each(v, g[u]) if(v!=par)
         {
-            int r=l+len-1;
-            f[l][r]=inf;
-            for(int k=l; k<r; k++)
-                cmin(f[l][r], f[l][k]+f[k+1][r]+cnt[k]-sum[l][r]);
+            dfs(v, u);
+            cmax(dep[u], dep[v]+1);
         }
-    cout<<f[1][n]+q<<endl;
-	return 0;
+        if(dep[u]==k-1 && par!=1)
+            ans++, dep[u]=-1;
+    };
+    dfs(1, 1);
+    // for(int i=1; i<=n; i++) cerr<<dep[i]<<endl;
+    cout<<ans<<endl;
+    return 0;
 }
-// dp, math
+// dfs and similar, trees, greedy, graphs

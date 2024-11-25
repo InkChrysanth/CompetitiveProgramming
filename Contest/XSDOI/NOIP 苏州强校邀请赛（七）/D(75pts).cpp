@@ -69,7 +69,7 @@ ll qmi(ll a, ll k, int mod)
 
 struct SegmentTree
 {
-    int val[K][M][N];
+    int val[K][M][N<<2];
     // the idx of mod
     // the idx of number
     // the idx of operation
@@ -138,10 +138,10 @@ void debug_division(int x)
 vector<int> DivideMod(int x)
 {
     set<int> S;
+    vector<int> res;
     for(int i=2; i*i<=x; i++) if(x%i==0)
         while(x%i==0) x/=i, S.ins(i);
     if(x>1) S.ins(x);
-    vector<int> res;
     each(x, S) res.eb(x);
     return res;
 }
@@ -149,7 +149,7 @@ vector<int> DivideMod(int x)
 signed main()
 {
     setIO("expr");
-    // debug_division(29393);
+    // debug_division(50);
     int tid; cin>>tid;
     if(1<=tid && tid<=3)
     {
@@ -225,3 +225,4 @@ signed main()
     }
     return 0;
 }
+// math, excrt, exgcd, data structures, implementation, brute force, number theory

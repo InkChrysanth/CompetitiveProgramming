@@ -40,46 +40,38 @@ void setIO(string s="")
 
 constexpr int inf=0x3f3f3f3f;
 constexpr ll llinf=0x3f3f3f3f3f3f3f3fll;
-constexpr int N=3010, base=233;
+constexpr int N=2010;
 
-ull hs[N], fac[N];
-int f[N][N];
-unordered_map<ull, int> lst;
-int n, q;
-string s;
+bool f[N][N];
 
 signed main()
 {
-    setIO("substring");
-    cin>>n>>q>>s; s="%"+s;
-    fac[0]=1;
-    for(int i=1; i<=n; i++) hs[i]=hs[i-1]*base+s[i], fac[i]=fac[i-1]*base;
-    auto H=[&](int l, int r){ return hs[r]-hs[l-1]*fac[r-l+1]; };
-    for(int len=1; len<=n; len++) 
+    setIO();
+    int T; cin>>T;
+    while(T--)
     {
-        lst.clear();
-        for(int l=1; l+len-1<=n; l++)
-        {
-            int r=l+len-1;
-            ull tmp=H(l, r);
-            f[l][r]++;
-            f[lst[tmp]][r]--;
-            lst[tmp]=l;
-        }
-    }
-    for(int len=1; len<=n; len++) 
-        for(int l=1; l+len-1<=n; l++)
-        {
-            int r=l+len-1;
-            debug(f[l][r]);
-        }
-    for(int l=n; l>=1; l--) for(int r=l; r<=n; r++)
-        f[l][r]+=(f[l+1][r]+f[l][r-1]-f[l+1][r-1]);
-    while(q--)
-    {
-        int l, r; cin>>l>>r;
-        cout<<f[l][r]<<endl;
+        string s, t; cin>>s>>t;
+        // int ans=0;
+        // regex m(t);
+        // for(int i=1; i<=s.size(); i++)
+        //     ans+=regex_match(s.substr(0, i), m), debug(s.substr(0, i));
+        s="%"+s; t="%"+t;
+        int n=s.size()-1, m=t.size()-1;
+        memset(f, false, sizeof f);
+        f[0][0]=true;
+        for(int i=1; i<=n; i++)
+            for(int j=1; j<=m; j++)
+            {
+                if(s[i]==t[j] || t[j]=='.')
+                    f[i][j]=f[i-1][j-1];
+                if(t[j]=='*')
+                    f[i][j]=f[i][j-1] || (f[i-1][j] && s[i]==s[i-1]);
+            }
+        // for(int i=1; i<=n; i++, cerr<<endl) for(int j=1; j<=m; j++) cerr<<f[i][j]<<" ";
+        int res=0;
+        for(int i=1; i<=n; i++) res+=f[i][m];
+        cout<<res<<endl;
     }
     return 0;
 }
-// strings, hashing, math
+// dp, strings
