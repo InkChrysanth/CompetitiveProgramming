@@ -52,6 +52,7 @@ signed main()
     auto f=[&](auto &&f, vector<ll> vec, int i)
     {
         if(vec.empty()) return 0ll;
+        // use 0-indexed
         if(i==m) return accumulate(all(vec), 0ll);
         vector<ll> vec1, vec2;
         each(x, vec)
