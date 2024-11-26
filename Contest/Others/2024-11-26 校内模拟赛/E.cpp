@@ -53,22 +53,22 @@ signed main()
         f[n]=f[n+n]=inf;
         for(int i=n; i>1; i--)
         {
-            if (a[i - 1] < f[i])
-                f[i - 1 + n] = max(f[i - 1 + n], -a[i]);
-            if (a[i - 1] < -a[i])
-                f[i - 1 + n] = max(f[i - 1 + n], f[i]);
-            if (a[i - 1] < f[i + n])
-                f[i - 1 + n] = max(f[i - 1 + n], a[i]);
-            if (a[i - 1] < a[i])
-                f[i - 1 + n] = max(f[i - 1 + n], f[i + n]);
-            if (-a[i - 1] < f[i])
-                f[i - 1] = max(f[i - 1], -a[i]);
-            if (-a[i - 1] < -a[i])
-                f[i - 1] = max(f[i - 1], f[i]);
-            if (-a[i - 1] < f[i + n])
-                f[i - 1] = max(f[i - 1], a[i]);
-            if (-a[i - 1] < a[i])
-                f[i - 1] = max(f[i - 1], f[i + n]);
+            if(a[i-1]<f[i])
+                f[i-1+n]=max(f[i-1+n], -a[i]);
+            if(a[i-1]<-a[i])
+                f[i-1+n]=max(f[i-1+n], f[i]);
+            if(a[i-1]<f[i+ n])
+                f[i-1+n]=max(f[i-1+n], a[i]);
+            if(a[i-1]<a[i])
+                f[i-1+n]=max(f[i-1+n], f[i+n]);
+            if(-a[i-1]<f[i])
+                f[i-1]=max(f[i-1], -a[i]);
+            if(-a[i-1]<-a[i])
+                f[i-1]=max(f[i-1], f[i]);
+            if(-a[i-1]<f[i+n])
+                f[i-1]=max(f[i-1], a[i]);
+            if(-a[i-1]<a[i])
+                f[i-1]=max(f[i-1], f[i+n]);
         }
         if(f[1]==-inf && f[1+n]==-inf) cout<<"NO"<<endl;
         else
@@ -77,33 +77,33 @@ signed main()
             int x=-inf, y=-inf;
             for(int i=1; i<=n; i++)
             {
-                if (f[i] != -inf)
+                if(f[i]!=-inf)
                 {
-                    if (-a[i] > x && f[i] > y)
+                    if(-a[i]>x && f[i]>y)
                     {
-                        x = a[i] = -a[i];
+                        x=a[i]=-a[i];
                         continue;
                     }
-                    if (-a[i] > y && f[i] > x)
+                    if(-a[i]>y && f[i]>x)
                     {
-                        y = a[i] = -a[i];
+                        y=a[i]=-a[i];
                         continue;
                     }
                 }
-                if (f[i + n] != -inf)
+                if(f[i+n]!=-inf)
                 {
-                    if (a[i] > x && f[i + n] > y)
+                    if(a[i]>x && f[i+n]>y)
                     {
-                        x = a[i];
+                        x=a[i];
                         continue;
                     }
-                    if (a[i] > y && f[i + n] > x)
+                    if(a[i]>y && f[i+n]>x)
                     {
-                        y = a[i];
+                        y=a[i];
                         continue;
                     }
                 }
-                if (x < y) swap(x, y);
+                if(x<y) swap(x, y);
             }
             for(int i=1; i<=n; i++) cout<<a[i]<<" ";
             cout<<endl;

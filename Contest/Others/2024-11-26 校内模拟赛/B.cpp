@@ -68,3 +68,4 @@ signed main()
     cout<<(f[0][sum]+mod)%mod<<endl;
     return 0;
 }
+// dp, game theory

@@ -101,3 +101,4 @@ signed main()
     cout<<(ans==n+1 ? -1 : ans)<<endl;
     return 0;
 }
+// number theory
