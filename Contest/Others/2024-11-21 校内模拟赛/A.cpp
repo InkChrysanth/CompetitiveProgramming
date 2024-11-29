@@ -76,14 +76,14 @@ signed main()
         heap.push(mp(dist[1]=0, 1));
         while(heap.size())
         {
-            auto u=heap.top(); heap.pop();
-            if(vis[u.se]) continue;
-            vis[u.se]=true;
-            each(t, g[u.se])
+            auto u=heap.top().se; heap.pop();
+            if(vis[u]) continue;
+            vis[u]=true;
+            each(t, g[u])
             {
-                int v=t.fi; ll w=work(t.se, dist[u.se]);
-                if(!vis[v] && dist[v]>dist[u.se]+w)
-                    heap.push(mp(dist[v]=dist[u.se]+w, v));
+                int v=t.fi; ll w=work(t.se, dist[u]);
+                if(!vis[v] && dist[v]>dist[u]+w)
+                    heap.push(mp(dist[v]=dist[u]+w, v));
             }
         }
         return dist[n]==llinf ? -1 : dist[n];
