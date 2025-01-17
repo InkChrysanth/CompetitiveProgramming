@@ -1,0 +1,7 @@
+*.in
+*.out
+*.ans
+*.bin
+*.exe
+/.vscode
+/.cph
